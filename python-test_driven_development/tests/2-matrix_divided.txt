@@ -70,3 +70,10 @@ ZeroDivisionError: division by zero
 >>> matrix = [[float('inf'), float('inf')], [float('inf'), float('inf')]]
 >>> matrix_divided(matrix, float('inf'))
 [[nan, nan], [nan, nan]]
+
+# Test Case 13: Missing argument
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix)
+Traceback (most recent call last):
+    ...
+TypeError: matrix_divided() missing 1 required positional argument: 'div'
