@@ -5,7 +5,7 @@
 My name is John Doe
 
 >>> say_my_name("Jane")
-My name is Jane
+My name is Jane 
 
 >>> try:
 ...     say_my_name()
