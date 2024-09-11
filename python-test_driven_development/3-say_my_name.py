@@ -1,5 +1,13 @@
 #!/usr/bin/python3
 
+"""
+3-say_my_name
+
+This module provides a function to print a formatted string with a first name
+and an optional last name.
+"""
+
+
 def say_my_name(first_name, last_name=""):
     """
     Prints "My name is <first_name> <last_name>".
