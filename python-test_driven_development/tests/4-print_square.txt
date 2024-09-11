@@ -30,3 +30,9 @@
 ... except TypeError as e:
 ...     str(e)
 'size must be an integer'
+
+>>> try:
+...     print_square()
+... except TypeError as e:
+...     str(e)
+print_square() missing 1 required positional argument: 'size'
