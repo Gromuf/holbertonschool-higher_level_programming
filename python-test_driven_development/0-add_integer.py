@@ -1,5 +1,10 @@
 #!/usr/bin/python3
 
+"""
+This module provides a function to add two integers or floats after converting them to integers.
+
+The `add_integer` function takes two parameters, `a` and `b`, which can be integers or floats. The function casts these parameters to integers and returns their sum. If the parameters are not of type integer or float, a TypeError is raised.
+"""
 def add_integer(a, b=98):
     """
     Adds two numbers after converting them to integers.
