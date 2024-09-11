@@ -1,0 +1,38 @@
+>>> import importlib
+>>> text_indentation = importlib.import_module('5-text_indentation').text_indentation
+
+>>> text_indentation("Hello. How are you? I hope you are well: Have a good day.")
+Hello.
+<BLANKLINE>
+How are you?
+<BLANKLINE>
+I hope you are well:
+<BLANKLINE>
+Have a good day.
+<BLANKLINE>
+
+>>> text_indentation("No punctuation here")
+No punctuation here
+>>> try:
+...     text_indentation(123)
+... except TypeError as e:
+...     str(e)
+'text must be a string'
+
+>>> text_indentation("What is this?  It is a test.")
+What is this?
+<BLANKLINE>
+It is a test.
+<BLANKLINE>
+
+>>> text_indentation("One sentence. Another one.")
+One sentence.
+<BLANKLINE>
+Another one.
+<BLANKLINE>
+
+>>> text_indentation("Colon: Test.")
+Colon:
+<BLANKLINE>
+Test.
+<BLANKLINE>
