@@ -52,7 +52,7 @@ def matrix_divided(matrix, div):
             )
     row_lengths = [len(row) for row in matrix]
     if len(set(row_lengths)) != 1:
-        raise TypeError("Each row of a matrix must have the same size")
+        raise TypeError("Each row of the matrix must have the same size")
     if not isinstance(div, (int, float)):
         raise TypeError("div must be a number")
     if div == 0:
