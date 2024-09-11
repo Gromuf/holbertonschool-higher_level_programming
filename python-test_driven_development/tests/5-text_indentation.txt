@@ -13,6 +13,7 @@ Have a good day.
 
 >>> text_indentation("No punctuation here")
 No punctuation here
+
 >>> try:
 ...     text_indentation(123)
 ... except TypeError as e:
@@ -36,3 +37,9 @@ Colon:
 <BLANKLINE>
 Test.
 <BLANKLINE>
+
+>>> try:
+...     text_indentation()
+... except TypeError as e:
+...     str(e)
+"text_indentation() missing 1 required positional argument: 'text'"
