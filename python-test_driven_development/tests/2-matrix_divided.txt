@@ -69,4 +69,4 @@ ZeroDivisionError: division by zero
 # Test Case 12: Matrix with inf values divided by inf
 >>> matrix = [[float('inf'), float('inf')], [float('inf'), float('inf')]]
 >>> matrix_divided(matrix, float('inf'))
-[[float('nan'), float('nan')], [float('nan'), float('nan')]]
+[[nan, nan], [nan, nan]]
