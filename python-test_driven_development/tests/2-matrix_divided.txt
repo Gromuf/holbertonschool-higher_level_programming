@@ -1,0 +1,77 @@
+>>> import importlib
+>>> matrix_divided = importlib.import_module('2-matrix_divided').matrix_divided
+
+# Test Case 1: Basic case with integer matrix
+>>> matrix = [[1, 2, 3], [4, 5, 6]]
+>>> matrix_divided(matrix, 2)
+[[0.5, 1.0, 1.5], [2.0, 2.5, 3.0]]
+
+# Test Case 2: Matrix with floating-point numbers
+>>> matrix = [[1.5, 2.5], [3.5, 4.5]]
+>>> matrix_divided(matrix, 1.5)
+[[1.0, 1.67], [2.33, 3.0]]
+
+# Test Case 3: Division by a whole number
+>>> matrix = [[10, 20, 30], [40, 50, 60]]
+>>> matrix_divided(matrix, 10)
+[[1.0, 2.0, 3.0], [4.0, 5.0, 6.0]]
+
+# Test Case 4: Division by 1
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, 1)
+[[1.0, 2.0], [3.0, 4.0]]
+
+# Test Case 5: Division by a number that divides evenly
+>>> matrix = [[5, 10], [15, 20]]
+>>> matrix_divided(matrix, 5)
+[[1.0, 2.0], [3.0, 4.0]]
+
+# Test Case 6: Division of matrix with zero values
+>>> matrix = [[0, 0], [0, 0]]
+>>> matrix_divided(matrix, 1)
+[[0.0, 0.0], [0.0, 0.0]]
+
+# Test Case 7: Rows of different lengths
+>>> matrix = [[1, 2], [3]]
+>>> matrix_divided(matrix, 1)
+Traceback (most recent call last):
+    ...
+TypeError: Each row of the matrix must have the same size
+
+# Test Case 8: Matrix with non-numeric elements
+>>> matrix = [[1, '2'], [3, 4]]
+>>> matrix_divided(matrix, 1)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+# Test Case 9: Input is not a matrix
+>>> matrix = 'not a matrix'
+>>> matrix_divided(matrix, 1)
+Traceback (most recent call last):
+    ...
+TypeError: matrix must be a matrix (list of lists) of integers/floats
+
+# Test Case 10: Division by a string
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, '2')
+Traceback (most recent call last):
+    ...
+TypeError: div must be a number
+
+# Test Case 11: Division by zero
+>>> matrix = [[1, 2], [3, 4]]
+>>> matrix_divided(matrix, 0)
+Traceback (most recent call last):
+    ...
+ZeroDivisionError: division by zero
+
+# Test Case 12: Matrix with infinite values
+>>> matrix = [[float('inf'), 1], [1, 1]]
+>>> matrix_divided(matrix, 1)
+[[float('inf'), 1.0], [1.0, 1.0]]
+
+# Test Case 13: Matrix with NaN values
+>>> matrix = [[float('nan'), 1], [1, 1]]
+>>> matrix_divided(matrix, 1)
+[[float('nan'), 1.0], [1.0, 1.0]]
