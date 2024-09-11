@@ -1,0 +1,26 @@
+>>> import importlib
+>>> say_my_name = importlib.import_module('3-say_my_name').say_my_name
+
+>>> say_my_name("John", "Doe")
+My name is John Doe
+
+>>> say_my_name("Jane")
+My name is Jane 
+
+>>> try:
+...     say_my_name("John", 123)
+... except TypeError as e:
+...     str(e)
+'last_name must be a string'
+
+>>> try:
+...     say_my_name(123, "Doe")
+... except TypeError as e:
+...     str(e)
+'first_name must be a string'
+
+>>> try:
+...     say_my_name(123, 456)
+... except TypeError as e:
+...     str(e)
+'first_name must be a string'
