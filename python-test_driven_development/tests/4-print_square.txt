@@ -6,9 +6,11 @@
 ####
 ####
 ####
+
 >>> print_square(2)
 ##
 ##
+
 >>> print_square(0)
 
 >>> try:
