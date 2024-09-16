@@ -113,7 +113,8 @@ class Square:
         Position is used to space the square horizontally and vertically.
         """
         if self.size == 0:
-            print()
+            print("")
+            return
         else:
             for _ in range(self.position[1]):
                 print()
