@@ -7,6 +7,7 @@ The 'Square' class defines a square with a private size attribute,
 but without any type or value validation for the size.
 """
 
+
 class Square:
     """
     A class that defines a square by its size.
