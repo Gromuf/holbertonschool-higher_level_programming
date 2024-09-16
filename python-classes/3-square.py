@@ -20,7 +20,7 @@ class Square:
         __size (int): The size of the square, kept private.
     """
 
-    def __init__(self, size):
+    def __init__(self, size=0):
         """
         Initializes the square with a given size.
 
