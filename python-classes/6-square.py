@@ -11,13 +11,7 @@ of the square.
 
 
 class Square:
-    """
-    A class that defines a square by its size and calculates its area.
-
-    Attributes:
-        __size (int): The size of the square, kept private.
-        __position (tuple): The position of the square, kept private.
-    """
+    """A class that defines a square by its size and calculates its area."""
 
     def __init__(self, size=0, position=(0, 0)):
         """
@@ -34,18 +28,12 @@ class Square:
             ValueError: If size is less than 0.
             TypeError: If position is not a tuple of two positive integers.
         """
-
         self.size = size
         self.position = position
 
     @property
     def size(self):
-        """
-        Retrieves the size of the square.
-
-        Returns:
-            int: The current size of the square.
-        """
+        """Retrieves the size of the square."""
         return self.__size
 
     @size.setter
@@ -68,12 +56,7 @@ class Square:
 
     @property
     def position(self):
-        """
-        Retrieves the position of the square.
-
-        Returns:
-            tuple: The current position of the square.
-        """
+        """Retrieves the position of the square."""
         return self.__position
 
     @position.setter
@@ -96,22 +79,13 @@ class Square:
         self.__position = value
 
     def area(self):
-        """
-        Calculates and returns the area of the square.
-
-        Returns:
-            int: The area of the square, computed as size * size.
-        """
+        """Calculates and returns the area of the square."""
 
         return self.__size * self.__size
 
     def my_print(self):
         """
-        Prints a visual representation of the square using '#' characters.
-
-        If size is 0, prints an empty line.
-        Position is used to space the square horizontally and vertically.
-        """
+        Prints a visual representation of the square using '#' characters."""
         if self.size == 0:
             print("")
             return
