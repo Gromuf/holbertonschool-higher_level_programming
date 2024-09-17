@@ -84,7 +84,12 @@ class Square:
         return self.__size * self.__size
 
     def my_print(self):
-        """Prints a visual representation of the square using '#' characters"""
+        """
+        Print a visual representation of the square using '#' characters.
+
+        If the size is 0, an empty line is printed. The square is printed with
+        offset positions specified by __position.
+        """
         if self.__size == 0:
             print("")
             return
