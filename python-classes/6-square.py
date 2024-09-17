@@ -85,11 +85,11 @@ class Square:
 
     def my_print(self):
         """Prints a visual representation of the square using '#' characters"""
-        if self.size == 0:
+        if self.__size == 0:
             print("")
             return
         else:
-            for _ in range(self.position[1]):
-                print()
-            for _ in range(self.size):
-                print(" " * self.position[0] + "#" * self.size)
+            for _ in range(self.__position[1]):
+                print("")
+            for _ in range(self.__size):
+                print(" " * self.__position[0] + "#" * self.__size)
