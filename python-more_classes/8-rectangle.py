@@ -93,16 +93,14 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             return 0
-        else:
-            return 2 * (self.width + self.height)
+        return 2 * (self.width + self.height)
 
     def __str__(self):
         if self.width == 0 or self.height == 0:
             return ""
-        rectangle = ""
-        for _ in range(self.height):
-            rectangle += str(self.print_symbol) * self.width + "\n"
-        return rectangle.rstrip()
+        return (
+            (str(self.print_symbol) * self.width + "\n") * self.height.rstrip()
+            )
 
     def __repr__(self):
         """Returns a string representation of the rectangle.
