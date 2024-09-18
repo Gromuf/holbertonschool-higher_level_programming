@@ -91,9 +91,13 @@ class Square:
         offset positions specified by __position.
         """
         if self.__size == 0:
-            print("")
-            return
-        for _ in range(self.__position[1]):
-            print("")
-        for _ in range(self.__size):
-            print(" " * self.__position[0] + "#" * self.__size)
+            print()
+        else:
+            for i in range(self.position[1]):
+                print()
+            for i in range(0, self.size):
+                for k in range(self.position[0]):
+                    print(" ", end='')
+                for j in range(self.size):
+                    print("#", end='')
+                print()
