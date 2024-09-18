@@ -99,10 +99,12 @@ class Rectangle:
     def __str__(self):
         if self.width == 0 or self.height == 0:
             return ""
-        rectangle = ""
-        for _ in range(self.height):
-            rectangle += str(self.print_symbol) * self.width + "\n"
-        return rectangle.rstrip()
+        rectangle = []
+        for i in range(self.height):
+            [rectangle.append(str(self.print_symbol)) for j in range(self.width)]
+            if i != self.height - 1:
+                rectangle.append("\n")
+        return "".join(rectangle)
 
     def __repr__(self):
         """Returns a string representation of the rectangle.
