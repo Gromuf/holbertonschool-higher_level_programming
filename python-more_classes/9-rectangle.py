@@ -28,8 +28,8 @@ class Rectangle:
             width (int): The width of the rectangle (default is 0).
             height (int): The height of the rectangle (default is 0).
         """
-        self.__width = width
-        self.__height = height
+        self.width = width
+        self.height = height
         Rectangle.number_of_instances += 1
 
     @property
@@ -93,16 +93,14 @@ class Rectangle:
         """
         if self.width == 0 or self.height == 0:
             return 0
-        else:
-            return 2 * (self.width + self.height)
+        return 2 * (self.width + self.height)
 
     def __str__(self):
         if self.width == 0 or self.height == 0:
             return ""
-        rectangle = ""
-        for _ in range(self.height):
-            rectangle += str(self.print_symbol) * self.width + "\n"
-        return rectangle.rstrip()
+        return (
+            (str(self.print_symbol) * self.width + "\n") * self.height.rstrip()
+            )
 
     def __repr__(self):
         """Returns a string representation of the rectangle.
@@ -113,7 +111,7 @@ class Rectangle:
         Returns:
             str: A string representation of the rectangle.
         """
-        return ("Rectangle({}, {})".format(self.width, self.height))
+        return ("Rectangle({:d}, {:d})".format(self.width, self.height))
 
     def __del__(self):
         """Prints a message when a Rectangle instance is deleted."""
@@ -139,10 +137,9 @@ class Rectangle:
             raise TypeError("rect_1 must be an instance of Rectangle")
         if not isinstance(rect_2, Rectangle):
             raise TypeError("rect_2 must be an instance of Rectangle")
-        if rect_1.area() > rect_2.area():
+        if rect_1.area() >= rect_2.area():
             return rect_1
-        else:
-            return rect_2
+        return rect_2
 
     @classmethod
     def square(cls, size=0):
