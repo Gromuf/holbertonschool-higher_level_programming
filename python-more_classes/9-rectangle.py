@@ -121,7 +121,7 @@ class Rectangle:
         Rectangle.number_of_instances -= 1
 
     @staticmethod
-    def bigger_or_equal(rect1, rect2):
+    def bigger_or_equal(rect_1, rect_2):
         """Compares two rectangles and returns the one with the larger area.
 
         Args:
@@ -135,14 +135,14 @@ class Rectangle:
         Raises:
             TypeError: If rect_1 or rect_2 is not an instance of Rectangle.
         """
-        if not isinstance(rect1, Rectangle):
-            raise TypeError("rect1 must be an instance of Rectangle")
-        if not isinstance(rect2, Rectangle):
-            raise TypeError("rect2 must be an instance of Rectangle")
-        if rect1.area() > rect2.area():
-            return rect1
+        if not isinstance(rect_1, Rectangle):
+            raise TypeError("rect_1 must be an instance of Rectangle")
+        if not isinstance(rect_2, Rectangle):
+            raise TypeError("rect_2 must be an instance of Rectangle")
+        if rect_1.area() > rect_2.area():
+            return rect_1
         else:
-            return rect2
+            return rect_2
 
     @classmethod
     def square(cls, size=0):
