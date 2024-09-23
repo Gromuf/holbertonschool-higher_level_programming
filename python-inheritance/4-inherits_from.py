@@ -8,15 +8,18 @@ from the specified class.
 
 def inherits_from(obj, a_class):
     """
-    Returns True if the object is an instance of a class that inherited
-    from a_class (directly or indirectly), otherwise returns False.
+    Checks if an object is an instance of a class that inherited
+    from a_class (directly or indirectly).
 
     Args:
         obj: The object to check.
         a_class: The class to check against.
 
     Returns:
-        bool: True if obj is an instance of a_class or its subclasses,
-              False otherwise.
+        bool: True if obj is an instance of a_class or any subclass
+              of a_class, but not if it is an instance of a_class
+              itself. Returns False otherwise.
     """
-    return isinstance(obj, a_class) and type(obj) is not a_class
+    if type(obj) is a_class:
+        return False
+    return isinstance(obj, a_class)
