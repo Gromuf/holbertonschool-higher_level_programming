@@ -1,0 +1,21 @@
+>>> import importlib
+>>> BaseGeometry = importlib.import_module('7-base_geometry').BaseGeometry
+>>> bg = BaseGeometry()
+
+>>> bg.integer_validator("width", 5)  # Valid integer, should not raise an exception
+>>> bg.integer_validator("height", 10) # Valid integer, should not raise an exception
+
+>>> bg.integer_validator("width", "5")  # Raises TypeError
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+>>> bg.integer_validator("height", -3)  # Raises ValueError
+Traceback (most recent call last):
+    ...
+ValueError: height must be greater than 0
+
+>>> bg.integer_validator("length", 0)    # Raises ValueError
+Traceback (most recent call last):
+    ...
+ValueError: length must be greater than 0
