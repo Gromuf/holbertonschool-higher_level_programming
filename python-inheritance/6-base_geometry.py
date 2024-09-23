@@ -16,4 +16,4 @@ class BaseGeometry:
         Raises:
             Exception: If the area method is not implemented in a subclass.
         """
-        raise Exception("area is not implemented")
+        raise Exception("area() is not implemented")
