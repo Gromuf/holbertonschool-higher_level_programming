@@ -35,11 +35,11 @@ class FlyingFish(Fish, Bird):
 
     def fly(self):
         """Prints a message indicating the flying fish is soaring."""
-        print("The flying fish is soaring")
+        print("The flying fish is soaring!")
 
     def swim(self):
         """Prints a message indicating the flying fish is swimming."""
-        print("The flying fish is swimming")
+        print("The flying fish is swimming!")
 
     def habitat(self):
         """Prints a message about the flying fish's habitat."""
