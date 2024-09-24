@@ -11,7 +11,7 @@ class SwimMixin:
 
     def swim(self):
         """Prints a message indicating the creature is swimming."""
-        print("The creature swims")
+        print("The creature swims!")
 
 
 class FlyMixin:
@@ -19,7 +19,7 @@ class FlyMixin:
 
     def fly(self):
         """Prints a message indicating the creature is flying."""
-        print("The creature flies")
+        print("The creature flies!")
 
 
 class Dragon(SwimMixin, FlyMixin):
