@@ -125,3 +125,50 @@ ValueError: depth must be greater than 0
 
 >>> bg.integer_validator("height", 1)
 >>> bg.integer_validator("length", 2**31 - 1)
+
+>>> bg.integer_validator("max int", 2**31)
+Traceback (most recent call last):
+    ...
+TypeError: max int must be an integer
+
+>>> bg.integer_validator("large int", 2**63 - 1)
+Traceback (most recent call last):
+    ...
+TypeError: large int must be an integer
+
+>>> bg.integer_validator("negative float", -0.1)
+Traceback (most recent call last):
+    ...
+ValueError: negative float must be greater than 0
+
+>>> bg.integer_validator("positive float", 0.1)
+Traceback (most recent call last):
+    ...
+TypeError: positive float must be an integer
+
+>>> from decimal import Decimal
+>>> bg.integer_validator("decimal value", Decimal(3.5))
+Traceback (most recent call last):
+    ...
+TypeError: decimal value must be an integer
+
+>>> class CustomObject: pass
+>>> bg.integer_validator("custom object", CustomObject())
+Traceback (most recent call last):
+    ...
+TypeError: custom object must be an integer
+
+>>> bg.integer_validator("infinity", float('inf'))
+Traceback (most recent call last):
+    ...
+TypeError: infinity must be an integer
+
+>>> bg.integer_validator("negative infinity", float('-inf'))
+Traceback (most recent call last):
+    ...
+TypeError: negative infinity must be an integer
+
+>>> bg.integer_validator("nan", float('nan'))
+Traceback (most recent call last):
+    ...
+TypeError: nan must be an integer
