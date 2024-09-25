@@ -2,20 +2,60 @@
 >>> BaseGeometry = importlib.import_module('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
->>> bg.integer_validator("width", 5)  # Valid integer, should not raise an exception
->>> bg.integer_validator("height", 10) # Valid integer, should not raise an exception
+# Valid integer values
+>>> bg.integer_validator("width", 5)  # Should not raise an exception
+>>> bg.integer_validator("height", 10)  # Should not raise an exception
+>>> bg.integer_validator("length", 1)  # Minimum valid integer, should not raise an exception
+>>> bg.integer_validator("depth", 1000)  # Large valid integer, should not raise an exception
 
+# Invalid types (non-integers)
 >>> bg.integer_validator("width", "5")  # Raises TypeError
 Traceback (most recent call last):
     ...
 TypeError: width must be an integer
 
+>>> bg.integer_validator("height", 5.5)  # Raises TypeError
+Traceback (most recent call last):
+    ...
+TypeError: height must be an integer
+
+>>> bg.integer_validator("length", [1, 2, 3])  # Raises TypeError
+Traceback (most recent call last):
+    ...
+TypeError: length must be an integer
+
+>>> bg.integer_validator("width", None)  # Raises TypeError
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+>>> bg.integer_validator("width", True)  # Raises TypeError (bool is a subclass of int, but not allowed)
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+# Invalid values (less than or equal to zero)
 >>> bg.integer_validator("height", -3)  # Raises ValueError
 Traceback (most recent call last):
     ...
 ValueError: height must be greater than 0
 
->>> bg.integer_validator("length", 0)    # Raises ValueError
+>>> bg.integer_validator("length", 0)  # Raises ValueError
 Traceback (most recent call last):
     ...
 ValueError: length must be greater than 0
+
+>>> bg.integer_validator("depth", -1000)  # Raises ValueError
+Traceback (most recent call last):
+    ...
+ValueError: depth must be greater than 0
+
+# Edge cases
+>>> bg.integer_validator("height", 1)  # Minimum valid value, should not raise an exception
+>>> bg.integer_validator("length", 2**31 - 1)  # Maximum 32-bit integer value, should not raise an exception
+
+# Check area method (should raise exception as it's not implemented)
+>>> bg.area()  # Raises Exception
+Traceback (most recent call last):
+    ...
+Exception: area() is not implemented
