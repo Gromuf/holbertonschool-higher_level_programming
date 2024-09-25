@@ -2,101 +2,126 @@
 >>> BaseGeometry = importlib.import_module('7-base_geometry').BaseGeometry
 >>> bg = BaseGeometry()
 
-# Valid integer values
->>> bg.integer_validator("width", 5)  # Should not raise an exception
->>> bg.integer_validator("height", 10)  # Should not raise an exception
->>> bg.integer_validator("length", 1)  # Minimum valid integer, should not raise an exception
->>> bg.integer_validator("depth", 1000)  # Large valid integer, should not raise an exception
+>>> type(bg)
+<class '7-base_geometry.BaseGeometry'>
 
-# Invalid types (non-integers)
->>> bg.integer_validator("width", "5")  # Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: width must be an integer
+>>> print(bg) # doctest: +ELLIPSIS
+<7-base_geometry.BaseGeometry object at ...>
 
->>> bg.integer_validator("height", 5.5)  # Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: height must be an integer
+>>> print(bg.area) # doctest: +ELLIPSIS, +NORMALIZE_WHITESPACE
+<bound method BaseGeometry.area of <7-base_geometry.BaseGeometry object at...>>
 
->>> bg.integer_validator("length", [1, 2, 3])  # List: Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: length must be an integer
-
->>> bg.integer_validator("depth", (1, 2))  # Tuple: Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: depth must be an integer
-
->>> bg.integer_validator("size", {1, 2, 3})  # Set: Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: size must be an integer
-
->>> bg.integer_validator("values", {"key": 1})  # Dictionary: Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: values must be an integer
-
->>> bg.integer_validator("width", None)  # Raises TypeError
-Traceback (most recent call last):
-    ...
-TypeError: width must be an integer
-
->>> bg.integer_validator("width", True)  # Raises TypeError (bool is a subclass of int, but not allowed)
-Traceback (most recent call last):
-    ...
-TypeError: width must be an integer
-
-# Invalid values (less than or equal to zero)
->>> bg.integer_validator("height", -3)  # Raises ValueError
-Traceback (most recent call last):
-    ...
-ValueError: height must be greater than 0
-
->>> bg.integer_validator("length", 0)  # Raises ValueError
-Traceback (most recent call last):
-    ...
-ValueError: length must be greater than 0
-
->>> bg.integer_validator("depth", -1000)  # Raises ValueError
-Traceback (most recent call last):
-    ...
-ValueError: depth must be greater than 0
-
-# Edge cases
->>> bg.integer_validator("height", 1)  # Minimum valid value, should not raise an exception
->>> bg.integer_validator("length", 2**31 - 1)  # Maximum 32-bit integer value, should not raise an exception
-
-# Check area method (should raise exception as it's not implemented)
->>> bg.area()  # Raises Exception
+>>> bg.area()
 Traceback (most recent call last):
     ...
 Exception: area() is not implemented
 
-# Additional tests for other collection types
->>> bg.integer_validator("size", {"a": 1})  # Dictionary, Raises TypeError
+>>> bg.integer_validator("valid number", 1)
+
+>>> bg.integer_validator("invalid number", "number")
 Traceback (most recent call last):
     ...
-TypeError: size must be an integer
+TypeError: invalid number must be an integer
 
->>> bg.integer_validator("length", (1, 2, 3))  # Tuple, Raises TypeError
+>>> bg.integer_validator("another invalid", True)
+Traceback (most recent call last):
+    ...
+TypeError: another invalid must be an integer
+
+>>> bg.integer_validator("invalid tuple", (1,))
+Traceback (most recent call last):
+    ...
+TypeError: invalid tuple must be an integer
+
+>>> bg.integer_validator("and another", [3])
+Traceback (most recent call last):
+    ...
+TypeError: and another must be an integer
+
+>>> bg.integer_validator("more invalid testing", {3, 4})
+Traceback (most recent call last):
+    ...
+TypeError: more invalid testing must be an integer
+
+>>> bg.integer_validator("absolutely every possible invalid", None)
+Traceback (most recent call last):
+    ...
+TypeError: absolutely every possible invalid must be an integer
+
+>>> bg.integer_validator("invalid int", -1)
+Traceback (most recent call last):
+    ...
+ValueError: invalid int must be greater than 0
+
+>>> bg.integer_validator("invalid int", 0)
+Traceback (most recent call last):
+    ...
+ValueError: invalid int must be greater than 0
+
+>>> bg.integer_validator({"a": 1}, (1, 2))
+Traceback (most recent call last):
+    ...
+TypeError: {'a': 1} must be an integer
+
+>>> bg.integer_validator("width", 5)
+>>> bg.integer_validator("height", 10)
+>>> bg.integer_validator("length", 1)
+>>> bg.integer_validator("depth", 1000)
+
+>>> bg.integer_validator("width", "5")
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+>>> bg.integer_validator("height", 5.5)
+Traceback (most recent call last):
+    ...
+TypeError: height must be an integer
+
+>>> bg.integer_validator("length", [1, 2, 3])
 Traceback (most recent call last):
     ...
 TypeError: length must be an integer
 
->>> bg.integer_validator("set_size", {1, 2, 3})  # Set, Raises TypeError
+>>> bg.integer_validator("depth", (1, 2))
 Traceback (most recent call last):
     ...
-TypeError: set_size must be an integer
+TypeError: depth must be an integer
 
->>> bg.integer_validator("tuple_value", (4,))  # Single-element tuple, Raises TypeError
+>>> bg.integer_validator("size", {1, 2, 3})
 Traceback (most recent call last):
     ...
-TypeError: tuple_value must be an integer
+TypeError: size must be an integer
 
->>> bg.integer_validator("list_value", [42])  # Single-element list, Raises TypeError
+>>> bg.integer_validator("values", {"key": 1})
 Traceback (most recent call last):
     ...
-TypeError: list_value must be an integer
+TypeError: values must be an integer
+
+>>> bg.integer_validator("width", None)
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+>>> bg.integer_validator("width", True)
+Traceback (most recent call last):
+    ...
+TypeError: width must be an integer
+
+>>> bg.integer_validator("height", -3)
+Traceback (most recent call last):
+    ...
+ValueError: height must be greater than 0
+
+>>> bg.integer_validator("length", 0)
+Traceback (most recent call last):
+    ...
+ValueError: length must be greater than 0
+
+>>> bg.integer_validator("depth", -1000)
+Traceback (most recent call last):
+    ...
+ValueError: depth must be greater than 0
+
+>>> bg.integer_validator("height", 1)
+>>> bg.integer_validator("length", 2**31 - 1)
