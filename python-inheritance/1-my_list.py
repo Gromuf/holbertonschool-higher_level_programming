@@ -9,6 +9,7 @@ class MyList(list):
     """
     A subclass of `list` with an additional method to print the list sorted.
     """
+
     def print_sorted(self):
         """
         Prints the list in ascending order.
