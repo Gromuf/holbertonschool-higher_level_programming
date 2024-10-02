@@ -39,9 +39,8 @@ class CustomObject:
         try:
             with open(filename, 'wb') as file:
                 pickle.dump(self, file)
-        except (pickle.PicklingError, OSError) as err:
+        except Exception as err:
             print("Failed to serialize object: {}".format(err))
-            return None
 
     @classmethod
     def deserialize(cls, filename):
@@ -57,6 +56,6 @@ class CustomObject:
             with open(filename, 'rb') as file:
                 obj = pickle.load(file)
             return obj
-        except (FileNotFoundError, pickle.UnpicklingError, OSError) as err:
+        except (FileNotFoundError, pickle.UnpicklingError, Exception) as err:
             print("Failed to deserialize object: {}".format(err))
             return None
