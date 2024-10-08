@@ -9,6 +9,7 @@ Endpoints:
     - `/`: Returns a simple text message.
     - `/data`: Returns a JSON object with sample data.
     - `/status`: Returns a simple "OK" message to indicate the server's status.
+    - `/info`: Returns version and description of the API in JSON format.
     - Any other endpoint: Returns a 404 error with an "Endpoint not found"
       message.
 """
@@ -46,6 +47,17 @@ class SimpleHTTPServer(http.server.BaseHTTPRequestHandler):
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"OK")
+
+        elif self.path == '/infos':
+            self.send_response(200)
+            self.send_header('Content-type', 'application/json')
+            self.end_headers()
+
+            infos = {
+                "version": "1.0",
+                "description": "A simple API built with http.server"
+            }
+            self.wfile.write(json.dumps(infos).encode())
 
         else:
             self.send_response(404)
