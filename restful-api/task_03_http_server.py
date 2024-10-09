@@ -15,12 +15,12 @@ Endpoints:
 """
 
 from urllib.parse import urlparse
-import http.server
+from http.server import BaseHTTPRequestHandler, HTTPServer
 import socketserver
 import json
 
 
-class SimpleHTTPServer(http.server.BaseHTTPRequestHandler):
+class SimpleHTTPServer(BaseHTTPRequestHandler):
     """A simple HTTP server to handle GET requests."""
 
     def do_GET(self):
@@ -69,8 +69,15 @@ class SimpleHTTPServer(http.server.BaseHTTPRequestHandler):
             self.wfile.write(b"Error: Endpoint not found")
 
 
-PORT = 8000
+def run(server_class=HTTPServer, handler_class=SimpleHTTPServer, port=8000):
+    server_address = ('', port)
+    httpd = server_class(server_address, handler_class)
+    try:
+        httpd.serve_forever()
+    except KeyboardInterrupt:
+        pass
+    httpd.server_close()
 
-with socketserver.TCPServer(("", PORT), SimpleHTTPServer) as server:
-    print("serving at port {}".format(PORT))
-    server.serve_forever()
+
+if __name__ == "__main__":
+    run()
