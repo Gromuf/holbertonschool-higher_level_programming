@@ -14,7 +14,7 @@ Endpoints:
       message.
 """
 
-from urllib.parse import urlparse, parse_qs
+from urllib.parse import urlparse
 import http.server
 import socketserver
 import json
@@ -27,7 +27,6 @@ class SimpleHTTPServer(http.server.BaseHTTPRequestHandler):
         """Handle GET requests for different endpoints."""
         parsed_url = urlparse(self.path)
         path = parsed_url.path
-        query_params = parse_qs(parsed_url.query)
         if path == '/':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
