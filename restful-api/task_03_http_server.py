@@ -44,7 +44,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         elif path == '/data':
             self.send_response(200)
-            self.send_header('Content-Type', 'application/json; charset=utf-8')
+            self.send_header('Content-Type', 'application/json')
             self.end_headers()
             data = {
                 "name": "John",
