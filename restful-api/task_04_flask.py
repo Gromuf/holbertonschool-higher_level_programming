@@ -48,16 +48,27 @@ def get_user(username):
 def add_user():
     """Handles adding a new user via POST request."""
     new_user = request.get_json()
+    if (
+        not new_user or 'username' not in new_user
+        or 'name' not in new_user or 'age' not in new_user
+        or 'city' not in new_user
+    ):
+        return jsonify({"error": "Invalid input"}), 400
+    username = new_user['username']
 
-    username = new_user.get('username')
+    if username in users:
+        return jsonify({"error": "User already exists"}), 400
 
-    if not username:
-        return jsonify({"error": "Username is required"}), 400
-    users[username] = new_user
+    users[username] = {
+        "username": username,
+        "name": new_user['name'],
+        "age": new_user['age'],
+        "city": new_user['city']
+    }
 
     return jsonify({
         "message": "User added",
-        "user": new_user
+        "user": users[username]
     }), 201
 
 
