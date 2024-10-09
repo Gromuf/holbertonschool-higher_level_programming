@@ -77,7 +77,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             self.send_response(404)
             self.send_header('Content-Type', 'text/plain; charset=utf-8')
             self.end_headers()
-            self.wfile.write("Error: Endpoint not found".encode('utf-8'))
+            self.wfile.write("Endpoint not found".encode('utf-8'))
             logging.warning("Réponse envoyée : Endpoint not found")
 
     def log_message(self, format, *args):
