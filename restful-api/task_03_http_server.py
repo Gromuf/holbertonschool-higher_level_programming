@@ -14,6 +14,7 @@ Endpoints:
       message.
 """
 
+from urllib.parse import urlparse, parse_qs
 import http.server
 import socketserver
 import json
@@ -24,13 +25,16 @@ class SimpleHTTPServer(http.server.BaseHTTPRequestHandler):
 
     def do_GET(self):
         """Handle GET requests for different endpoints."""
-        if self.path == '/':
+        parsed_url = urlparse(self.path)
+        path = parsed_url.path
+        query_params = parse_qs(parsed_url.query)
+        if path == '/':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"Hello, this is a simple API!")
 
-        elif self.path == '/data':
+        elif path == '/data':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
@@ -42,13 +46,13 @@ class SimpleHTTPServer(http.server.BaseHTTPRequestHandler):
             }
             self.wfile.write(json.dumps(data).encode())
 
-        elif self.path == '/status':
+        elif path == '/status':
             self.send_response(200)
             self.send_header('Content-type', 'text/plain')
             self.end_headers()
             self.wfile.write(b"OK")
 
-        elif self.path == '/info':
+        elif path == '/info':
             self.send_response(200)
             self.send_header('Content-type', 'application/json')
             self.end_headers()
