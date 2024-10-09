@@ -37,16 +37,15 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         if path == '/':
             self.send_response(200)
-            self.send_header('Content-type', 'text/plain')
+            self.send_header('Content-Type', 'text/plain; charset=utf-8')
             self.end_headers()
             self.wfile.write("Hello, this is a simple API!".encode('utf-8'))
             logging.info("Réponse envoyée : message de bienvenue.")
 
         elif path == '/data':
             self.send_response(200)
-            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()
-
             data = {
                 "name": "John",
                 "age": 30,
@@ -57,14 +56,14 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         elif path == '/status':
             self.send_response(200)
-            self.send_header('Content-type', 'text/plain')
+            self.send_header('Content-Type', 'text/plain; charset=utf-8')
             self.end_headers()
             self.wfile.write("OK".encode('utf-8'))
             logging.info("Réponse envoyée : statut OK.")
 
         elif path == '/info':
             self.send_response(200)
-            self.send_header('Content-type', 'application/json')
+            self.send_header('Content-Type', 'application/json; charset=utf-8')
             self.end_headers()
 
             info = {
@@ -76,7 +75,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
 
         else:
             self.send_response(404)
-            self.send_header('Content-type', 'text/plain')
+            self.send_header('Content-Type', 'text/plain; charset=utf-8')
             self.end_headers()
             self.wfile.write("Error: Endpoint not found".encode('utf-8'))
             logging.warning("Réponse envoyée : Endpoint not found")
@@ -98,8 +97,9 @@ def run(
         httpd.serve_forever()
     except KeyboardInterrupt:
         pass
-    httpd.server_close()
-    logging.info("Serveur HTTP arreté.")
+    finally:
+        httpd.server_close()
+        logging.info("Serveur HTTP arreté.")
 
 
 if __name__ == "__main__":
