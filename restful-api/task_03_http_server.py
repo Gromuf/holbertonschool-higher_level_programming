@@ -74,7 +74,7 @@ class SimpleHTTPRequestHandler(BaseHTTPRequestHandler):
             logging.info("Réponse envoyée : infos.")
 
         else:
-            self.send_response(404)
+            self.send_response(404, "Endpoint not found")
             self.send_header('Content-Type', 'text/plain; charset=utf-8')
             self.end_headers()
             self.wfile.write("Endpoint not found".encode('utf-8'))
