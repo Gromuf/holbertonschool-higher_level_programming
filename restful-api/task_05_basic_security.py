@@ -99,4 +99,4 @@ def handle_needs_fresh_token_error(err):
 
 
 if __name__ == '__main__':
-    app.run(debug=True, port=5002)
+    app.run()
