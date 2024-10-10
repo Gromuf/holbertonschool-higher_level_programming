@@ -27,54 +27,51 @@ users = {
 
 @auth.verify_password
 def verify_password(username, password):
-    if username in users and check_password_hash(
-        users[username]['password'], password
-    ):
-        return username
-    return None
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        return user
 
 
-@app.route('/')
-def home():
-    return jsonify({"message": "Hello, this is an open endpoint!"})
+@app.route('/basic-protected', methods=['GET'])
+@auth.login_required
+def basic_protected():
+    return jsonify({"message": "Basic Auth : Access Granted"})
 
 
 @app.route('/login', methods=['POST'])
 @auth.login_required
 def login():
-    current_user = auth.current_user()
+    data = request.get_json()
+    username = data.get('username')
+    password = data.get('password')
 
-    access_token = create_access_token(identity={
-        "username": current_user,
-        "role": users[current_user]['role']
-    })
+    user = users.get(username)
+    if user and check_password_hash(user['password'], password):
+        access_token = create_access_token(
+            identity={'username': username, "role": user['role']}
+            )
+        return jsonify(access_token=access_token), 200
+    return jsonify({"error": "Invalid credentials"}), 401
 
-    return jsonify(access_token=access_token), 200
 
-
-@app.route('/protected', methods=['GET'])
+@app.route('/jwt-protected', methods=['GET'])
 @jwt_required()
-def protected():
+def jwt_protected():
     current_user = get_jwt_identity()
     return jsonify({
-        "message": "Hello, {}!, you have access to this protected endpoint!"
-        .format(current_user['username']),
-        "role": current_user['role']
-    })
+        "message": "JWT Auth: Access Granted", "user": current_user
+    }), 200
 
 
-@app.route('/admin', methods=['GET'])
+@app.route('/admin-only', methods=['GET'])
 @jwt_required()
-def admin():
+def admin_only():
     current_user = get_jwt_identity()
 
     if current_user['role'] != 'admin':
         return jsonify({
-            "error": "Unauthorized access, admin privileges required"
-            }), 403
-    return jsonify({"message": "Hello Admin {}, welcome to the admin area!"
-                    .format(current_user['username'])
-                    })
+            "error": "Admin Access Required"}), 403
+    return jsonify({"message": "Admin Access: Granted"}), 200
 
 
 if __name__ == '__main__':
