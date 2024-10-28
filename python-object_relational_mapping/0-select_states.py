@@ -13,14 +13,21 @@ if __name__ == "__main__":
     Takes three arguments: mysql username, mysql password, and database name.
     Executes a query to fetch all states from the database and prints each row.
     """
-    db = MySQLdb.connect(host="localhost",
-                         user=argv[1],
-                         passwd=argv[2],
-                         db=argv[3])
-    cursor = db.cursor()
-    cursor.execute("SELECT * FROM states ORDER BY id ASC")
-    rows = cursor.fetchall()
-    for row in rows:
-        print(row)
-    cursor.close()
-    db.close()
+    try:
+        db = MySQLdb.connect(host="localhost",
+                            user=argv[1],
+                            passwd=argv[2],
+                            db=argv[3])
+        cursor = db.cursor()
+        cursor.execute("SELECT * FROM states ORDER BY id ASC")
+        rows = cursor.fetchall()
+        for row in rows:
+            print(row)
+    except MySQLdb.Error as err:
+        print("Error : {}".format(err))
+    
+    finally:
+        if cursor:
+            cursor.close()
+        if db:
+            db.close()
