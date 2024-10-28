@@ -22,7 +22,7 @@ if __name__ == "__main__":
                          db=argv[3])
     cursor = db.cursor()
     cursor.execute(
-        "SELECT `id`, `name` FROM `states` ORDER BY BINARY `id` ASC"
+        "SELECT * FROM `states` ORDER BY `id`"
         )
     for state in cursor.fetchall():
         print(state)
