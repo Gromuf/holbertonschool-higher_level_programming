@@ -1,20 +1,18 @@
 #!/usr/bin/python3
 """
-A script that lists all states from the hbtn_0e_0_usa database.
-
-This script connects to a MySQL database and retrieves all records
-from the states table, sorted by id in ascending order. The database
-credentials (username, password, and database name) are provided as
-command line arguments.
-
-Usage:
-    ./0-select_states.py <mysql_username> <mysql_password> <database_name>
+This module connects to a MySQL database and retrieves
+all states sorted by id in ascending order.
 """
 
 import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
+    """
+    Connects to a MySQL server running on localhost at port 3306.
+    Takes three arguments: mysql username, mysql password, and database name.
+    Executes a query to fetch all states from the database and prints each row.
+    """
     db = MySQLdb.connect(host="localhost",
                          user=argv[1],
                          passwd=argv[2],
