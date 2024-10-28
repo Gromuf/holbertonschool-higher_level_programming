@@ -13,7 +13,7 @@ if __name__ == "__main__":
     Takes three arguments: mysql username, mysql password, and database name.
     Executes a query to fetch all states from the database and prints each row.
     """
-    
+
     db = MySQLdb.connect(host="localhost",
                          user=argv[1],
                          passwd=argv[2],
