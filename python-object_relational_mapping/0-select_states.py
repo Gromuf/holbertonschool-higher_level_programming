@@ -1,6 +1,4 @@
 #!/usr/bin/python3
-from sys import argv
-import MySQLdb
 """
 A script that lists all states from the hbtn_0e_0_usa database.
 
@@ -12,6 +10,10 @@ command line arguments.
 Usage:
     ./0-select_states.py <mysql_username> <mysql_password> <database_name>
 """
+
+from sys import argv
+import MySQLdb
+
 
 if __name__ == "__main__":
     db = MySQLdb.connect(host="localhost",
