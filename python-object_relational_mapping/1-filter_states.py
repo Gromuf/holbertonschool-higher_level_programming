@@ -12,17 +12,12 @@ import MySQLdb
 from sys import argv
 
 if __name__ == "__main__":
-    # MySQL connection parameters
-    username = argv[1]
-    passwd = argv[2]
-    db_name = argv[3]
-
     # Connect to the MySQL server
     db = MySQLdb.connect(host="localhost",
                          port=3306,
-                         user=username,
-                         passwd=passwd,
-                         db=db_name)
+                         user=argv[1],
+                         passwd=argv[2],
+                         db=argv[3])
     cursor = db.cursor()
 
     # Execute the query to select states starting with 'N'
