@@ -1,4 +1,9 @@
 #!/usr/bin/python3
+"""
+This module lists all State objects from the database `hbtn_0e_6_usa`.
+It connects to a MySQL database using SQLAlchemy and retrieves
+all states, sorted by their `id` in ascending order.
+"""
 
 from sys import argv
 from sqlalchemy import create_engine
