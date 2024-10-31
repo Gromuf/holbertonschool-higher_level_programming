@@ -1,7 +1,7 @@
 #!/usr/bin/python3
 """
-Script to list all State objects that contain the letter 'a' from the
-database hbtn_0e_6_usa.
+Module to query and print the State object ID for a given state name
+from the database hbtn_0e_6_usa using SQLAlchemy ORM.
 """
 
 from sys import argv
