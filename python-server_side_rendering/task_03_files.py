@@ -4,8 +4,8 @@ import json
 import csv
 
 app = Flask(__name__)
-JSON_FILE_PATH = 'product.json'
-CSV_FILE_PATH = 'product.csv'
+JSON_FILE_PATH = 'products.json'
+CSV_FILE_PATH = 'products.csv'
 
 
 def read_json_data():
@@ -23,7 +23,7 @@ def read_csv_data():
             reader = csv.DictReader(file)
             for row in reader:
                 row['id'] = int(row['id'])
-                row['price'] = int(row['price'])
+                row['price'] = float(row['price'])
                 products.append(row)
             return products
     except (FileNotFoundError, csv.Error):
